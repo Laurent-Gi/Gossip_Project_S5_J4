@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+
+
+      <!-- En cas de retour avec render uniquement !!! -->
+      <% if @gossip %>
+        <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Félicitations !</h4>
+          <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+          <p>Votre gossip à bien été créé... vous pouvez d'ors et déjà le voir ci dessous !</p>
+        </div>
+      <% end %>
+
+
+      <div class="list-group list-group-item d-flex justify-content-around align-items-center list-group-item-info">
+        <h2><%= link_to "Création d'un Gossip !", new_gossip_path, :class => "btn btn-success" %></h2><br>
+
+        <p>Consultez les Gossips existants </p>
+
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Les potins</th>
+              <th>Les auteurs</th>
+            </tr>
+          </thead>
+        </table>
+
+      </div>
+
+      <ul>
+        <% @gossips.each do |go| %>
+        <!-- <tr> -->
+          <li class="list-group-item d-flex justify-content-around align-items-center list-group-item-info">
+          <%= link_to go.title, gossip_path(go.id) %>
+          <span class="badge badge-light badge-pill"><%= link_to go.user.first_name, user_path(go.user.id) %></span>
+          </li>
+        <!-- </tr> -->
+        <% end %>            
+      </ul>
+
+    </div>
+  </div>
+</div>
+

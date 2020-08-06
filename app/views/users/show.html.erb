@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+    
+    <h2>Profil de <%= @user.first_name %> <%= @user.last_name %></h2>
+    
+    <table class="table table-sm">
+       <tr>
+          <th>Prénom</th>
+          <td><%= @user.first_name %></td>
+      </tr>
+      <tr>
+          <th>Nom</th>
+          <td><%= @user.last_name %></td>
+      </tr>
+      <tr>
+          <th>Description</th>
+          <td><%= @user.description %></td>
+      </tr>
+      <tr>
+          <th>Email</th>
+          <td><%= @user.email %></td>
+      </tr>
+      <tr>
+          <th>Age</th>
+          <td><%= @user.age %></td>
+      </tr>
+      <tr>
+          <th>Ville</th>
+          <td><%= link_to @user.city.name, city_path(@user.city.id) %></td>
+      </tr>
+    </table>
+    
+    
+    </div>
+  </div>
+
+  <br>
+  <h4><%= link_to "Retour à la page des potins", gossips_path %></h4>
+
+</div>
+

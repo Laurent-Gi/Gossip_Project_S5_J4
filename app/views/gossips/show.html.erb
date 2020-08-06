@@ -1,0 +1,55 @@
+<div class="container"><br>
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="card border-success w-50" style="width: 20rem;">
+        <img class="card-header" src=".../100px180/" alt="<%=@gossip.user.first_name%> <%=@gossip.user.last_name %>" />
+        <div class="container" ><%= link_to "Ville : #{@gossip.user.city.name}", city_path(@gossip.user.city.id) %></div>
+        <div class="card-body text-success">
+          <h5 class="card-title"><%= @gossip.title %></h5>
+          <p class="card-text"><%= @gossip.content %></p>
+          
+          <div class="container">
+            <div class="card" style="width: 30rem;">
+              <div class="card-body">
+                <h5><small class="card-title">Nb commentaire(s) : <%= @gossip.comments.length %></small></p>
+                  <hr>
+                  <% @gossip.comments.each do |comment| %>
+                  <p class="card"> <%= comment.content %></p>
+                  <small class="card-text text-end"> "<%= comment.user.first_name %>  <%= comment.user.last_name %>"</small> </br>
+                  <small class="card-text text-end"> <%= comment.created_at %></small> </br>
+                  <%= link_to "Editer", edit_gossip_comment_path(@gossip.id, comment.id), class: "btn btn-secondary mr-1"%>
+                  <a href="/gossips/<%= @gossip.id %>/comments/<%= comment.id %>" class= "btn btn-danger mr-1" data-confirm ="Etes-vous sûr ?" data-method="DELETE">Supprimer</a>
+                  <hr>
+                  <% end %>
+
+                  <!-- On renvoie sur un autre controller index   -ou show? sans s ????-->
+                  <%= form_tag gossip_comments_path(params[:id]), method: "post" do %>
+                  <input type="text" name="comment">
+                  <input type="submit" value="ajoutez">
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <div class="d-flex justify-content-between">
+              <%= link_to "Fiche de l'auteur", user_path(@gossip.user.id), :class => 'btn btn-success' %>
+
+              <% if current_user == @gossip.user %>
+
+              <%= link_to 'Modifier le Gossip', edit_gossip_path(@gossip.id), :class => 'btn btn-warning' %>
+              <%= link_to 'Supprimer le Gossip', gossip_path(@gossip.id), :class => 'btn btn-danger', method: :DELETE, data: { confirm: "êtes-vous sûr?"} %>
+
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br><br><br>
+    <h4><%= link_to "Retour à la page des potins", gossips_path %></h4>
+
+  </div>

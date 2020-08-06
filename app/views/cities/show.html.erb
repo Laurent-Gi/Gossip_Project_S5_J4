@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+        
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+
+      <h1><%= @city.name %> - <small> <%= @city.zip_code %> </small></h1>
+      
+      <h3>Utilisateurs et gossips!</h3>
+    
+      <% @city.users.each do |u| %>
+        <h5><%= link_to "#{u.first_name} #{u.last_name}", user_path(u.id) %></h5>
+        <ul>
+          <% u.gossips.each do |g| %>
+             <li><%= link_to g.title, gossip_path(g.id) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    
+    </div>
+  </div>
+</div>

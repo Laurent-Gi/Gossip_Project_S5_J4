@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <br><br>
+      <h1>Connexion</h1>
+      <br>
+
+
+      <%= form_tag url_for(action:'create'), method: :post do %>
+      
+      <div class="form-group">
+        <label>Entre ton adresse mail :</label>
+        <input type="email" name="email" /><br>
+      </div>
+      
+      <div  class="form-group">
+        <label>Saisis ton mot de passe :</label>
+        <input type="password" name="password" /><br>
+      </div>
+
+      <div  class="form-group">
+        <input type="submit" value="Se connecter" /><br>
+      </div>
+      <% end %>
+
+
+
+      <br /><br />
+      <!-- Message alerte : pb de connexion -->
+      <% if @current_user == nil %>
+      <div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= flash[:danger] %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <% end %>
+
+
+
+    </div>
+  </div>
+</div>
